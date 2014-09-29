@@ -1,0 +1,218 @@
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+/**
+ * grid!!!!
+ */
+ .grid {
+    font-size: 0px;
+    text-align: justify;
+}
+.grid > * {
+    display: inline-block;
+    font-size: medium;
+    font-size: 1rem;
+    vertical-align: top;
+    width: 100%;
+}
+.grid::after {
+    display: inline-block;
+    width: 100%;
+    content:"";
+}
+/**
+ * grid sizes
+ */
+ @media screen and (min-width: 480px) {
+    .grid-2-480 > * {
+        width: 47%;
+    }
+}
+@media screen and (min-width: 800px) {
+    .grid-3-800 > * {
+        width: 30%;
+    }
+}
+/**
+ * tshirts
+ */
+ .tshirts {
+    padding: 2rem;
+}
+.tshirts > * {
+    background-repeat: no-repeat;
+    background-position: center;
+    border: 2px solid rgb(105, 164, 211);
+    margin-bottom: 4.5em;
+    position: relative;
+    perspective: 800px;
+}
+/**
+ * images
+ */
+ .tshirts > * > img {
+    display: block;
+    width: 100%;
+    transition: transform .5s ease;
+}
+.tshirts > * > img:nth-of-type(1) {
+    backface-visibility: hidden;
+    transform: rotateY(0deg) translateZ(0);
+}
+.tshirts > * > img:nth-of-type(2) {
+    position: absolute;
+    top:0;
+    left:0;
+    backface-visibility: hidden;
+    transform: rotateY(180deg) translateZ(0);
+}
+/**
+ * checkbox
+ */
+ .tshirts input[type="checkbox"] {
+    position: absolute;
+    top:0;
+    right: 0;
+    width: 2em;
+    height: 2em;
+    z-index: 1;
+    outline: 0 !important;
+}
+.tshirts input[type="checkbox"]:hover {
+    cursor: pointer;
+}
+.tshirts input[type="checkbox"]::after {
+    content: "\f079";
+    font: normal normal normal 20px/1 FontAwesome;
+    display: block;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    border-left: 2px solid rgb(105, 164, 211);
+    border-bottom: 2px solid rgb(105, 164, 211);
+    line-height: 1.6em;
+    color: rgb(105, 164, 211);
+    text-align: center;
+    transition: all .25s ease;
+}
+.tshirts input[type="checkbox"]:checked::after {
+    background-color: rgb(105, 164, 211);
+    color: white;
+}
+.tshirts input[type="checkbox"]:checked ~ img:nth-of-type(1) {
+    transform: rotateY(180deg);
+}
+.tshirts input[type="checkbox"]:checked ~ img:nth-of-type(2) {
+    transform: rotateY(0deg);
+}
+/**
+ * options
+ */
+ .tshirts .options {
+    display: block;
+    /*overflow: auto;*/
+    position: relative;
+}
+.tshirts .options > * {
+    display: block;
+    float:left;
+    width: 20%;
+    position: relative;
+}
+.tshirts .options > *:last-child::after {
+    border-right-width: 0px;
+}
+.tshirts .options > *::after {
+    content:"";
+    display: block;
+    padding-top: 100%;
+    border-top: 2px solid rgb(105, 164, 211);
+    border-right: 2px solid rgb(105, 164, 211);
+}
+.tshirts .options .fa {
+    text-align: center;
+    font-size: 1.5em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) translateZ(0);
+}
+.tshirts .options .fa::after {
+}
+
+.tshirts .options > span {
+    color: rgb(105, 164, 211);
+    transition: all .125s 0s ease;
+}
+.tshirts .options > span:hover {
+    cursor: pointer;
+}
+.tshirts .options > span:hover {
+    color: white;
+    background-color: rgb(105, 164, 211);
+}
+/**
+ * label
+ */
+ .tshirts > * > h6 {
+    position: absolute;
+    top: 100%;
+    padding-top: 1em;
+    overflow: auto;
+    left: 0;
+    width: 100%;
+    color: rgb(105, 164, 211);
+    font-family: Arial, sans-serif;
+    font-weight: normal;
+}
+.tshirts > * > h6 > strong {
+    float: right;
+}
+/**
+ * hover overlays
+ */
+.hover-overlay {
+    position: absolute;
+    bottom: 100%;
+    left:50%;
+    display: block;
+    transform: translateY(-1.5em) translateX(-50%) translateZ(0);
+    opacity: 0;
+    margin-bottom: .75em;
+    background-color: white;
+    outline: 2px solid rgb(105, 164, 211);
+    z-index: 10;
+    transition: all .25s ease;
+}
+.hover-overlay::after {
+    content: "";
+    width: 1em;
+    height: 1em;
+    margin-top:-.45em;
+    display: block;
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) rotate(45deg);
+    border-right: 2px solid rgb(105, 164, 211);
+    border-bottom: 2px solid rgb(105, 164, 211);
+    background-color: white;
+}
+.size-overlay {
+    width: 5em;
+    height: 200px;
+}
+.color-overlay {
+    width: 8em;
+    height: 8em;
+}
+/**
+ * animation for hover overlays
+ */
+.tshirts .options > span:hover .hover-overlay {
+    transform: translateY(0) translateX(-50%) translateZ(0);
+    opacity: 1;
+}
